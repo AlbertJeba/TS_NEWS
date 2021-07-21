@@ -1,5 +1,6 @@
 package com.example.tsnews;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -20,6 +21,8 @@ import org.w3c.dom.Text;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
+
+import static android.text.format.DateUtils.*;
 
 public class myadapter extends FirebaseRecyclerAdapter<model, myadapter.myviewholder>
 {
@@ -46,13 +49,13 @@ public class myadapter extends FirebaseRecyclerAdapter<model, myadapter.myviewho
 
     }
     private String calculateTimeAgo(String time) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
         sdf.setTimeZone(TimeZone.getTimeZone("Asia/Calcutta"));
         try {
             long time1 = sdf.parse(time).getTime();
             long now = System.currentTimeMillis();
             CharSequence ago =
-                    DateUtils.getRelativeTimeSpanString(time1, now, DateUtils.MINUTE_IN_MILLIS);
+                    getRelativeTimeSpanString(time1, now, MINUTE_IN_MILLIS);
             return ago+"";
         } catch (ParseException e) {
             e.printStackTrace();

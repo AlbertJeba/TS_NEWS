@@ -3,10 +3,13 @@ package com.example.tsnews;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 public class news_desc extends AppCompatActivity
 {
@@ -21,9 +24,21 @@ public class news_desc extends AppCompatActivity
 
         webView.getSettings().setLoadsImagesAutomatically(true);
         webView.getSettings().setJavaScriptEnabled(true);
+        Uri data = getIntent().getData();
+
+        if(data!=null){
+            String path=data.toString();
+            Toast.makeText(this, "Path ="+path, Toast.LENGTH_SHORT).show();
+
+            WebView webView=(WebView)findViewById(R.id.webview);
+            webView.loadUrl(path);
+        }
+
+
+
 
         final ProgressDialog pd=new ProgressDialog(this);
-        pd.setTitle("News Portal");
+        pd.setTitle("Tech Snicks");
         pd.setMessage("Loading...!");
 
         webView.setWebViewClient(new WebViewClient()

@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.firestore.core.OrderBy;
 
 import java.util.Objects;
 
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseRecyclerOptions<model> options =
                 new FirebaseRecyclerOptions.Builder<model>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("news"), model.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("news").orderByChild("tsid").limitToLast(100000), model.class)
                         .build();
 
         adapter = new myadapter(options);

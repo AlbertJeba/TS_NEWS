@@ -21,7 +21,6 @@ public class news_desc extends AppCompatActivity
 
         webView=(WebView)findViewById(R.id.webview);
 
-
         webView.getSettings().setLoadsImagesAutomatically(true);
         webView.getSettings().setJavaScriptEnabled(true);
         Uri data = getIntent().getData();
@@ -59,7 +58,6 @@ public class news_desc extends AppCompatActivity
 
         String linkdata=getIntent().getStringExtra("linkvalue");
         webView.loadUrl(linkdata);
-
 
     }
 }
